@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Species Details</title>
+    <link rel="stylesheet" href="details.css" />
+  </head>
+  <body>
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" aria-label="Back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+
+    <div class="details-container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <img id="heroImage" src="" alt="Fish" class="hero-img" />
+        <div class="hero-overlay">
+          <h1 class="common-name" id="commonName"></h1>
+          <p class="scientific-name" id="sciName"></p>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs">
+          <!-- JS will insert thumb images here -->
+        </div>
+      </div>
+      <!-- Overview Section -->
+      <section class="overview">
+        <h2>Overview</h2>
+        <p id="description"></p>
+        <a id="wikiLink" class="wiki-link" href="#" target="_blank">Learn more on Wikipedia</a>
+      </section>
+
+      <!-- Need to Know Section -->
+      <section class="specs">
+        <h2>Need to Know</h2>
+        <div class="spec-grid">
+          <div class="spec-card">
+            <p class="label">Rainfall</p>
+            <p class="value" id="rainfall"></p>
+          </div>
+          <div class="spec-card">
+            <p class="label">Temperature Range</p>
+            <p class="value" id="tempRange"></p>
+          </div>
+          <div class="spec-card">
+            <p class="label">Seasonality</p>
+            <p class="value" id="seasonality"></p>
+          </div>
+          <div class="spec-card">
+            <p class="label">Sample Count</p>
+            <p class="value" id="sampleCount"></p>
+          </div>
+          <div class="spec-card">
+            <p class="label">Observed From</p>
+            <p class="value" id="observedFrom"></p>
+          </div>
+          <div class="spec-card">
+            <p class="label">Last Seen</p>
+            <p class="value" id="lastSeen"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Similar Species Section -->
+      <section class="similar">
+        <h2>Similar Species</h2>
+        <div class="similar-row" id="similarSpecies">
+          <!-- Cards inserted dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <script src="details.js"></script>
+  </body>
+</html>
