@@ -13,27 +13,25 @@
         <div class="filters">
           <label>
             Weather
-            <select>
+            <select id="weatherFilter">
               <option>Any</option>
               <option>Dry</option>
               <option>Rainy</option>
               <option>Flooded</option>
             </select>
           </label>
-
           <label>
             Temperature
-            <select>
-              <option>Any</option>
-              <option>&lt;15°C</option>
-              <option>15–25°C</option>
-              <option>&gt;25°C</option>
+            <select id="temperatureFilter">
+              <option value="Any">Any</option>
+              <option value="<15°C">&lt;15°C</option>
+              <option value="15–25°C">15–25°C</option>
+              <option value=">25°C">&gt;25°C</option>
             </select>
           </label>
-
           <label>
             Season
-            <select>
+            <select id="seasonFilter">
               <option>Any</option>
               <option>Early Summer</option>
               <option>Mid Summer</option>
@@ -49,33 +47,9 @@
               <option>Late Spring</option>
             </select>
           </label>
+          <button id="searchBtn" class="details-btn">Search</button>
         </div>
-
-        <div class="station-list">
-          <div class="species-card">
-            <div class="fish-header">
-              <div class="fish-icon">🐟</div>
-              <h3>Murray Cod</h3>
-            </div>
-            <p>Dry • 27°C • Early Summer</p>
-          </div>
-
-          <div class="species-card">
-            <div class="fish-header">
-              <div class="fish-icon">🐠</div>
-              <h3>Golden Perch</h3>
-            </div>
-            <p>Rainy • 12°C • Mid Summer</p>
-          </div>
-
-          <div class="species-card">
-            <div class="fish-header">
-              <div class="fish-icon">🦈</div>
-              <h3>Silver Bream</h3>
-            </div>
-            <p>Flooded • 22°C • Late Summer</p>
-          </div>
-        </div>
+        <div class="station-list"></div>
       </aside>
 
       <!-- Floating fish detail card -->
@@ -84,23 +58,17 @@
         <div class="header">
           <div class="fish-icon">🐟</div>
           <div class="text">
-            <h2 id="cardSpecies">Murray Cod</h2>
-            <span id="cardStatus" class="status"
-              >Dry • 27°C • Early Summer</span
-            >
+            <h2 id="cardSpecies">Species Name</h2>
+            <span id="cardStatus" class="status">Weather • Temp • Season</span>
           </div>
         </div>
 
         <div class="meta">
-          <div class="meta-item" id="cardRiver">📍 River: Murrumbidgee</div>
-          <div class="meta-item" id="cardLastSeen">🕒 Last seen: Jan 2024</div>
-          <div class="meta-item" id="cardAbundance">📊 Abundance: High</div>
+          <div class="meta-item" id="cardAbundance">📊 Total samples: —</div>
         </div>
 
         <div class="description">
-          <p id="cardDescription">
-            A long-lived freshwater predator native to the Murray-Darling Basin.
-          </p>
+          <p id="cardDescription">Loading description...</p>
         </div>
 
         <button class="details-btn">More Details</button>
@@ -110,7 +78,7 @@
         <p>Here goes the map</p>
       </main>
     </div>
-    <script src="index.js"></script>
-    <script type="module" src="js/filterSeason.js"></script>
+    <!-- <script src="index.js"></script> -->
+    <script type="module" src="js/filters.js"></script>
   </body>
 </html>
