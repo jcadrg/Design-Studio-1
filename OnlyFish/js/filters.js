@@ -153,20 +153,20 @@ function attachCardListeners(dataMap) {
   });
 
   document.addEventListener("click", (e) => {
+    const clickedInsideCard = detailCard.contains(e.target);
+    const clickedSpeciesCard = e.target.closest(".species-card");
+    const clickedMapControl = e.target.closest(".leaflet-control");
+    const clickedMap = e.target.closest("#map");
+    const clickedFloatingBtn = e.target.closest(".basin-floating-button");
+
     if (
-      !detailCard.contains(e.target) &&
-      !e.target.closest(".species-card") &&
-      !e.target.closest(".leaflet-popup") &&
-      !e.target.closest(".leaflet-marker-icon") &&
+      !clickedInsideCard &&
+      !clickedSpeciesCard &&
+      !clickedMapControl &&
+      !clickedMap &&
+      !clickedFloatingBtn &&
       detailCard.classList.contains("visible")
     ) {
-      detailCard.classList.remove("visible");
-      detailCard.classList.add("hidden");
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && detailCard.classList.contains("visible")) {
       detailCard.classList.remove("visible");
       detailCard.classList.add("hidden");
     }
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Map initialization
 const map = L.map('map').setView([-33.5, 145.5], 6); // Centered over Murray-Darling Basin
-
+window.map = map
 // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //   maxZoom: 18,
 //   attribution: '&copy; OpenStreetMap contributors'
@@ -254,3 +254,33 @@ function addSpeciesPins(speciesName, allSamples) {
     map.fitBounds(bounds, { padding: [50, 50] });
   }
 }
+
+// Function to handle the basin boundary
+// This function is called when the user clicks on the basin boundary
+// It adds the basin coordinates to the geojson layer file in the json folder  
+document.getElementById("toggleBasinBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (!window.basinVisible) {
+    fetch('./json/murray_darling_basin.geojson')
+      .then(res => res.json())
+      .then(data => {
+        window.basinLayer = L.geoJSON(data, {
+          style: {
+            color: "#00BFFF",
+            weight: 2,
+            fillOpacity: 0.1
+          }
+        }).addTo(window.map);
+        this.textContent = "Hide Basin Boundary";
+        window.basinVisible = true;
+      });
+  } else {
+    if (window.basinLayer) {
+      window.map.removeLayer(window.basinLayer);
+      window.basinLayer = null;
+    }
+    this.textContent = "Show Basin Boundary";
+    window.basinVisible = false;
+  }
+});
