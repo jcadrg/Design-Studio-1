@@ -1,5 +1,11 @@
+// Loading fish samples and species metadata from json files within the project
 async function loadSamples() {
   const res = await fetch("./json/fish_samples_cleaned.json");
+  return await res.json();
+}
+
+async function loadSpeciesMetadata() {
+  const res = await fetch("./json/species_common_names.json");
   return await res.json();
 }
 
@@ -24,88 +30,83 @@ function renderCards(speciesList) {
   speciesList.forEach((item) => {
     const card = document.createElement("div");
     card.className = "species-card";
+    card.setAttribute("data-species", item.name);
     card.innerHTML = `
       <div class="fish-header">
-        <div class="fish-icon">🐟</div>
-        <h3>${item.name}</h3>
+        <h3 class="scientific-name-title">Scientific Name</h3>
+        <h3 class="scientific-name">${item.name}</h3>
+        <h4 class="common-name-title">Common Name</h4>
+        <p class="common-name">${item.commonName || "—"}</p>
       </div>
-      <p>${item.weather} • ${item.avgRain.toFixed(2)} mm</p>
-      <p>
-        ${item.avgTemp !== null && !isNaN(item.avgTemp)
+      <p><strong>Average Rainfall in Sampling:</strong> ${item.weather} • ${item.avgRain.toFixed(2)} mm</p>
+      <p><strong>Average Temperature & Season:</strong> ${
+        item.avgTemp !== null && !isNaN(item.avgTemp)
           ? `${item.avgTemp.toFixed(1)}°C`
-          : "No temp data"} • ${item.season}
-      </p>
+          : "No temp data"
+      } • ${item.season}</p>
     `;
     stationList.appendChild(card);
   });
 
-  // Hook up detail card with filtered data
   const dataMap = {};
   speciesList.forEach((item) => (dataMap[item.name] = item));
   attachCardListeners(dataMap);
 }
 
-function applyFilters(data, season, weather, tempRange) {
+function applyFilters(data, metadata, season, weather, tempRange) {
   const grouped = {};
 
   data.forEach((entry) => {
-    const {
-      species,
-      rainfall,
-      temp_min,
-      temp_max,
-      season: entrySeason,
-      count
-    } = entry;
-
-    const rain = parseFloat(rainfall);
-    const min = parseFloat(temp_min);
-    const max = parseFloat(temp_max);
+    const rain = parseFloat(entry.rainfall);
+    const min = parseFloat(entry.temp_min);
+    const max = parseFloat(entry.temp_max);
     const avgTemp = (!isNaN(min) && !isNaN(max)) ? (min + max) / 2 : null;
 
     const weatherLabel = classifyWeather(rain);
     const tempLabel = classifyTemperature(min, max);
 
-    const matchSeason = season === "Any" || entrySeason === season;
+    const matchSeason = season === "Any" || entry.season === season;
     const matchWeather = weather === "Any" || weatherLabel === weather;
     const matchTemp = tempRange === "Any" || tempLabel === tempRange;
 
     if (matchSeason && matchWeather && matchTemp) {
-      if (!grouped[species]) {
-        grouped[species] = {
+      if (!grouped[entry.species]) {
+        grouped[entry.species] = {
           rains: [],
           temps: [],
           seasons: [],
           totalSamples: 0,
         };
       }
-      grouped[species].rains.push(rain);
-      if (avgTemp !== null) grouped[species].temps.push(avgTemp);
-      grouped[species].seasons.push(entrySeason);
-      grouped[species].totalSamples += parseInt(count);
+      grouped[entry.species].rains.push(rain);
+      if (avgTemp !== null) grouped[entry.species].temps.push(avgTemp);
+      grouped[entry.species].seasons.push(entry.season);
+      grouped[entry.species].totalSamples += parseInt(entry.count);
     }
   });
 
-  const result = Object.entries(grouped).map(([name, stats]) => {
+  const result = Object.entries(grouped).map(([species, stats]) => {
     const avgRain = stats.rains.reduce((a, b) => a + b, 0) / stats.rains.length;
     const avgTemp = stats.temps.length > 0
       ? stats.temps.reduce((a, b) => a + b, 0) / stats.temps.length
       : null;
 
-    const seasonCounts = stats.seasons.reduce((acc, s) => {
+    const mostCommonSeason = Object.entries(stats.seasons.reduce((acc, s) => {
       acc[s] = (acc[s] || 0) + 1;
       return acc;
-    }, {});
-    const mostCommonSeason = Object.entries(seasonCounts).sort((a, b) => b[1] - a[1])[0][0];
+    }, {})).sort((a, b) => b[1] - a[1])[0][0];
+
+    const meta = metadata.find(m => m.species === species);
 
     return {
-      name,
+      name: species,
       avgRain,
       avgTemp,
       season: mostCommonSeason,
       weather: classifyWeather(avgRain),
       totalSamples: stats.totalSamples,
-      description: "A freshwater species found in the Murray-Darling Basin." // Placeholder
+      commonName: meta?.common_name || "Unknown",
+      description: meta?.description || "No description available."
     };
   });
 
@@ -115,48 +116,48 @@ function applyFilters(data, season, weather, tempRange) {
 function attachCardListeners(dataMap) {
   const detailCard = document.getElementById("detailCard");
   const speciesHeader = document.getElementById("cardSpecies");
-  const speciesStatus = document.getElementById("cardStatus");
   const cardAbundance = document.getElementById("cardAbundance");
   const cardDescription = document.getElementById("cardDescription");
 
   const speciesCards = document.querySelectorAll(".species-card");
-
   speciesCards.forEach((card) => {
-    const speciesName = card.querySelector("h3").textContent;
+    const speciesName = card.dataset.species;
     const speciesData = dataMap[speciesName];
     if (!speciesData) return;
 
     card.addEventListener("click", () => {
       speciesHeader.textContent = speciesName;
-
-      speciesStatus.textContent = `${speciesData.weather} • ${
+      document.getElementById("cardCommonName").textContent = speciesData.commonName || "—";
+      document.getElementById("cardWeather").textContent = `Average Weather: ${speciesData.weather}`;
+      document.getElementById("cardTemperature").textContent = `Average Temperature: ${
         speciesData.avgTemp !== null ? speciesData.avgTemp.toFixed(1) + "°C" : "No temp"
-      } • ${speciesData.season}`;
+      }`;
+      document.getElementById("cardSeason").textContent = `Optimal Season: ${speciesData.season}`;
 
-      cardAbundance.textContent = `📊 Total samples: ${speciesData.totalSamples}`;
+      cardAbundance.textContent = `Total samples: ${speciesData.totalSamples}`;
       cardDescription.textContent = speciesData.description;
 
-      // Set species data attribute for More Details button
       const moreBtn = detailCard.querySelector(".details-btn");
       moreBtn.setAttribute("data-species", speciesName);
 
-      // Show the detail card
       detailCard.classList.remove("hidden");
       detailCard.classList.add("visible");
+
+      addSpeciesPins(speciesName, window.fullSampleData);
     });
   });
 
-  // Close button
   detailCard.querySelector(".close-btn").addEventListener("click", () => {
     detailCard.classList.remove("visible");
     detailCard.classList.add("hidden");
   });
 
-  // Click outside
   document.addEventListener("click", (e) => {
     if (
       !detailCard.contains(e.target) &&
       !e.target.closest(".species-card") &&
+      !e.target.closest(".leaflet-popup") &&
+      !e.target.closest(".leaflet-marker-icon") &&
       detailCard.classList.contains("visible")
     ) {
       detailCard.classList.remove("visible");
@@ -164,7 +165,6 @@ function attachCardListeners(dataMap) {
     }
   });
 
-  // ESC to close
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && detailCard.classList.contains("visible")) {
       detailCard.classList.remove("visible");
@@ -179,13 +179,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tempEl = document.getElementById("temperatureFilter");
   const searchBtn = document.getElementById("searchBtn");
 
-  const data = await loadSamples();
+
+  const [data, metadata] = await Promise.all([
+    loadSamples(),
+    loadSpeciesMetadata()
+  ]);
+
+  window.fullSampleData = data; // Store full data for pin deploying
 
   searchBtn.addEventListener("click", () => {
     const season = seasonEl.value;
     const weather = weatherEl.value;
     const temp = tempEl.value;
-    applyFilters(data, season, weather, temp);
+    applyFilters(data, metadata, season, weather, temp);
   });
 
   document.addEventListener("click", (e) => {
@@ -197,3 +203,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+// Map initialization
+const map = L.map('map').setView([-33.5, 145.5], 6); // Centered over Murray-Darling Basin
+
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//   maxZoom: 18,
+//   attribution: '&copy; OpenStreetMap contributors'
+// }).addTo(map);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+let markersLayer = L.layerGroup().addTo(map); // to control/removal of markers
+
+// This function is called when a species is selected from the filter
+// It adds pins to the map for each unique lat/lon of the selected species
+// It also fits the map view to the bounds of the pins
+function addSpeciesPins(speciesName, allSamples) {
+  // Clear old markers
+  markersLayer.clearLayers();
+
+  // Filter samples for the selected species
+  const samples = allSamples.filter(s => s.species === speciesName);
+
+  // Group by lat/lon and sum counts
+  const grouped = {};
+  for (const s of samples) {
+    const key = `${s.latitude.toFixed(5)},${s.longitude.toFixed(5)}`;
+    if (!grouped[key]) {
+      grouped[key] = { lat: s.latitude, lon: s.longitude, count: 0 };
+    }
+    grouped[key].count += s.count;
+  }
+
+  // Add a pin for each unique coordinate
+  Object.values(grouped).forEach(loc => {
+    const marker = L.marker([loc.lat, loc.lon]);
+    marker.bindPopup(
+      `<strong>Sample Count:</strong> ${loc.count}<br><strong>Lat:</strong> ${loc.lat}<br><strong>Lon:</strong> ${loc.lon}`
+    );
+    marker.addTo(markersLayer);
+  });
+
+  // Fit map view to pins if any
+  const points = Object.values(grouped);
+  if (points.length > 0) {
+    const bounds = L.latLngBounds(points.map(p => [p.lat, p.lon]));
+    map.fitBounds(bounds, { padding: [50, 50] });
+  }
+}

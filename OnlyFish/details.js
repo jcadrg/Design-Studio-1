@@ -4,20 +4,6 @@ async function loadSpeciesData() {
   return await res.json();
 }
 
-function classifyWeather(rainfall) {
-  if (rainfall < 0.5) return "Dry";
-  if (rainfall <= 2) return "Rainy";
-  return "Flooded";
-}
-
-function classifyTemperature(min, max) {
-  if (isNaN(min) || isNaN(max)) return null;
-  const avg = (min + max) / 2;
-  if (avg < 15) return "<15°C";
-  if (avg <= 25) return "15–25°C";
-  return ">25°C";
-}
-
 function computeStats(data, speciesName) {
   const filtered = data.filter(e => e.species === speciesName);
   if (filtered.length === 0) return null;
@@ -27,7 +13,10 @@ function computeStats(data, speciesName) {
   const maxTemps = filtered.map(e => parseFloat(e.temp_max)).filter(t => !isNaN(t));
   const counts = filtered.map(e => parseInt(e.count)).filter(c => !isNaN(c));
   const seasons = filtered.map(e => e.season);
-  const dates = filtered.map(e => new Date(e.simple)).filter(d => !isNaN(d)).sort((a, b) => a - b);
+
+  // Sort valid dates
+  const dateObjs = filtered.map(e => new Date(e.simple)).filter(d => !isNaN(d));
+  const sortedDates = dateObjs.sort((a, b) => a - b);
 
   const avgRain = rainfalls.reduce((a, b) => a + b, 0) / rainfalls.length;
   const min = Math.min(...minTemps);
@@ -45,8 +34,8 @@ function computeStats(data, speciesName) {
     tempRange: `${min.toFixed(1)}°C – ${max.toFixed(1)}°C`,
     seasonality: mostCommonSeason,
     sampleCount: totalSamples.toLocaleString(),
-    observedFrom: dates[0]?.toLocaleString('default', { month: 'short', year: 'numeric' }) || "N/A",
-    lastSeen: dates[dates.length - 1]?.toLocaleString('default', { month: 'short', year: 'numeric' }) || "N/A"
+    observedFrom: sortedDates.length > 0 ? sortedDates[0].toLocaleDateString('en-AU', { month: 'short', year: 'numeric' }) : "Unknown",
+    lastSeen: sortedDates.length > 0 ? sortedDates[sortedDates.length - 1].toLocaleDateString('en-AU', { month: 'short', year: 'numeric' }) : "Unknown"
   };
 }
 
@@ -56,27 +45,23 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const data = await loadSpeciesData();
   const stats = computeStats(data, speciesName);
-  console.log('xxxxxxxxxxxxxx');
-  console.log(speciesName);
-  console.log('xxxxxxxxxxxxxx');
+
   if (!stats) {
     document.body.innerHTML = "<h2 style='text-align:center;margin-top:5rem;'>Species not found.</h2>";
     return;
   }
 
-   // Getting the image name from the url
+  // Try loading an image based on species name
   const safeName = speciesName.trim().toLowerCase().replace(/\s+/g, "_");
   const imagePath = `images/${safeName}.jpg`;
 
-  // Set hero image with fallback
   const heroImage = document.getElementById("heroImage");
   heroImage.src = imagePath;
   heroImage.onerror = () => {
     heroImage.src = "images/fallback.jpg";
   };
 
- 
-
+  // Inject content
   document.getElementById("commonName").textContent = "Common name to be implemented";
   document.getElementById("sciName").textContent = speciesName;
   document.getElementById("description").textContent = "No description provided.";
@@ -88,6 +73,4 @@ window.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("sampleCount").textContent = stats.sampleCount;
   document.getElementById("observedFrom").textContent = stats.observedFrom;
   document.getElementById("lastSeen").textContent = stats.lastSeen;
-
-  // Optional: similar species section could go here in the future
 });

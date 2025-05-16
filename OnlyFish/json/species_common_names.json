@@ -1,0 +1,122 @@
+[
+  {
+    "species": "Nematalosa erebi",
+    "common_name": "Bony Bream",
+    "description": "A widespread freshwater fish found across northern and central Australia, known for forming large shoals."
+  },
+  {
+    "species": "Melanotaenia fluviatilis",
+    "common_name": "Murray River Rainbowfish",
+    "description": "A colorful species native to the Murray-Darling Basin, commonly found in slow-moving or still waters."
+  },
+  {
+    "species": "Hypseleotris spp.",
+    "common_name": "Carp Gudgeons",
+    "description": "A group of small, bottom-dwelling freshwater fish common in Australian rivers and streams."
+  },
+  {
+    "species": "Macquaria ambigua",
+    "common_name": "Golden Perch",
+    "description": "A native Australian freshwater fish popular with anglers, known for its golden hue and strong fighting ability."
+  },
+  {
+    "species": "Craterocephalus spp.",
+    "common_name": "Hardyheads",
+    "description": "Small, schooling fish that inhabit a variety of freshwater and estuarine environments in Australia."
+  },
+  {
+    "species": "Maccullochella peelii",
+    "common_name": "Murray Cod",
+    "description": "The largest native freshwater fish in Australia, a top predator and a culturally significant species."
+  },
+  {
+    "species": "Bidyanus bidyanus",
+    "common_name": "Silver Perch",
+    "description": "A medium-sized native fish that was once abundant in the Murray-Darling system, now subject to conservation efforts."
+  },
+  {
+    "species": "Leiopotherapon unicolor",
+    "common_name": "Spangled Perch",
+    "description": "A hardy and adaptable fish, widely distributed throughout inland Australia."
+  },
+  {
+    "species": "Tandanus tandanus",
+    "common_name": "Freshwater Catfish",
+    "description": "A bottom-dwelling native catfish with distinctive barbels, valued both ecologically and recreationally."
+  },
+  {
+    "species": "Retropinna semoni",
+    "common_name": "Australian Smelt",
+    "description": "Small, slender-bodied fish that form schools in a variety of habitats, important prey for larger fish."
+  },
+  {
+    "species": "Gambusia holbrooki",
+    "common_name": "Eastern Mosquitofish",
+    "description": "An invasive species introduced to control mosquitoes, now widespread and harmful to native fauna."
+  },
+  {
+    "species": "Carassius auratus",
+    "common_name": "Goldfish",
+    "description": "An introduced ornamental species often found in the wild, known to impact native ecosystems."
+  },
+  {
+    "species": "Cyprinus carpio",
+    "common_name": "Common Carp",
+    "description": "A large, invasive fish species that causes significant damage to freshwater habitats in Australia."
+  },
+  {
+    "species": "Pseudomugil signifer",
+    "common_name": "Pacific Blue-eye",
+    "description": "A small, attractive fish with blue eyes and yellow fins, found in coastal streams and estuaries."
+  },
+  {
+    "species": "Ambassis agassizii",
+    "common_name": "Agassiz's Glassfish",
+    "description": "A translucent, small-bodied species found in slow-moving or still waters across eastern Australia."
+  },
+  {
+    "species": "Phalloceros caudimaculatus",
+    "common_name": "Dusky Millions Fish",
+    "description": "A livebearing fish introduced from South America, often found in urban streams."
+  },
+  {
+    "species": "Galaxias maculatus",
+    "common_name": "Common Galaxias",
+    "description": "A small, migratory fish known for its importance to the whitebait fishery."
+  },
+  {
+    "species": "Redigobius bikolanus",
+    "common_name": "Speckled Goby",
+    "description": "A tiny goby species found in estuaries and freshwater streams, often hiding in vegetation."
+  },
+  {
+    "species": "Mogurnda adspersa",
+    "common_name": "Southern Purple-spotted Gudgeon",
+    "description": "A striking native gudgeon with purple markings, now rare in many parts of its former range."
+  },
+  {
+    "species": "Hypseleotris klunzingeri",
+    "common_name": "Western Carp Gudgeon",
+    "description": "One of the most widespread and adaptable native fish in Australia, tolerating a range of conditions."
+  },
+  {
+    "species": "Hypseleotris galii",
+    "common_name": "Firetail Gudgeon",
+    "description": "A small gudgeon with a bright red tail, common in slow-flowing waters and billabongs."
+  },
+  {
+    "species": "Neosilurus hyrtlii",
+    "common_name": "Hyrtl\u2019s Catfish",
+    "description": "A native catfish with an elongated body and venomous spines, found across northern Australia."
+  },
+  {
+    "species": "Melanotaenia splendida",
+    "common_name": "Eastern Rainbowfish",
+    "description": "A highly adaptable and vividly colored species found in a wide range of eastern Australian waters."
+  },
+  {
+    "species": "Oreochromis mossambicus",
+    "common_name": "Mozambique Tilapia",
+    "description": "A highly invasive cichlid species introduced for aquaculture, now threatening native ecosystems."
+  }
+]

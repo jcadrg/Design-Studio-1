@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Fish Monitoring UI</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
   <body>
     <div class="container">
@@ -12,7 +14,7 @@
 
         <div class="filters">
           <label>
-            Weather
+            Average Weather
             <select id="weatherFilter">
               <option>Any</option>
               <option>Dry</option>
@@ -21,7 +23,7 @@
             </select>
           </label>
           <label>
-            Temperature
+            Average Temperature
             <select id="temperatureFilter">
               <option value="Any">Any</option>
               <option value="<15°C">&lt;15°C</option>
@@ -47,8 +49,10 @@
               <option>Late Spring</option>
             </select>
           </label>
-          <button id="searchBtn" class="details-btn">Search</button>
+          <button id="searchBtn" class="details-btn">Show Results</button>
         </div>
+        <hr />
+        <h2 class="results-heading">Species likely observed under these conditions:</h2>
         <div class="station-list"></div>
       </aside>
 
@@ -56,15 +60,34 @@
       <div id="detailCard" class="fish-detail-card hidden">
         <button class="close-btn" aria-label="Close">×</button>
         <div class="header">
-          <div class="fish-icon">🐟</div>
           <div class="text">
-            <h2 id="cardSpecies">Species Name</h2>
-            <span id="cardStatus" class="status">Weather • Temp • Season</span>
+            <h2>Best Conditions to Spot This Species</h2>
+
+            <div class="meta-row">
+              <p class="meta-label">Scientific Name</p>
+              <h3 id="cardSpecies">Species Name</h3>
+            </div>
+
+            <div class="meta-row">
+              <p class="meta-label">Common Name</p>
+              <h4 id="cardCommonName" class="common-name">Common Name</h4>
+            </div>
           </div>
         </div>
 
-        <div class="meta">
-          <div class="meta-item" id="cardAbundance">📊 Total samples: —</div>
+        <div class="meta-list">
+          <div class="meta">
+            <div class="meta-item" id="cardWeather">Average Weather: —</div>
+          </div>
+          <div class="meta">
+            <div class="meta-item" id="cardTemperature">Average Temperature: —</div>
+          </div>
+          <div class="meta">
+            <div class="meta-item" id="cardSeason">Optimal Season: —</div>
+          </div>
+          <div class="meta">
+            <div class="meta-item" id="cardAbundance">Total samples: —</div>
+          </div>
         </div>
 
         <div class="description">
@@ -75,10 +98,11 @@
       </div>
 
       <main class="main-content">
-        <p>Here goes the map</p>
+        <div id="map" style="width: 100%; height: 100%; border-radius: 8px;"></div>
       </main>
     </div>
-    <!-- <script src="index.js"></script> -->
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="js/filters.js"></script>
   </body>
 </html>
