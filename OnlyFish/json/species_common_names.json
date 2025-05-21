@@ -2,7 +2,7 @@
   {
     "species": "Nematalosa erebi",
     "common_name": "Bony Bream",
-    "description": "A widespread freshwater fish found across northern and central Australia, known for forming large shoals."
+    "description": "A widespread freshwater fish found across northern and central Australia, known for forming large schools."
   },
   {
     "species": "Melanotaenia fluviatilis",
@@ -10,7 +10,7 @@
     "description": "A colorful species native to the Murray-Darling Basin, commonly found in slow-moving or still waters."
   },
   {
-    "species": "Hypseleotris spp.",
+    "species": "Hypseleotris spp",
     "common_name": "Carp Gudgeons",
     "description": "A group of small, bottom-dwelling freshwater fish common in Australian rivers and streams."
   },
@@ -118,5 +118,50 @@
     "species": "Oreochromis mossambicus",
     "common_name": "Mozambique Tilapia",
     "description": "A highly invasive cichlid species introduced for aquaculture, now threatening native ecosystems."
+  },
+  {
+    "species": "Perca fluviatilis",
+    "common_name": "European Perch",
+    "description": "A predatory freshwater fish native to Europe and northern Asia, known for its green body with dark vertical stripes and red-orange fins. Common in lakes and slow rivers, it preys on smaller fish and invertebrates."
+  },
+  {
+    "species": "Maccullochella macquariensis",
+    "common_name": "Trout Cod",
+    "description": "A rare and endangered Australian freshwater fish closely related to the Murray Cod. Recognized by its bluish-grey body and distinctive blotched pattern, it inhabits fast-flowing upland rivers and requires conservation efforts to support recovery."
+  },
+  {
+    "species": "Misgurnus anguillicaudatus",
+    "common_name": "Oriental Weatherloach",
+    "description": "An elongated, bottom-dwelling fish native to East Asia but introduced in parts of Australia. It is known for its ability to survive in low-oxygen environments and its sensitivity to changes in barometric pressure, which gives it the nickname 'weatherloach'."
+  },
+  {
+    "species": "Philypnodon grandiceps",
+    "common_name": "Flathead Gudgeon",
+    "description": "A small, native Australian freshwater fish with a broad, flattened head, commonly found in slow-moving rivers and streams. It is an ambush predator that feeds on insects and small crustaceans."
+  },
+  {
+    "species": "Philypnodon macrostomus",
+    "common_name": "Dwarf Flathead Gudgeon",
+    "description": "A small, cryptic freshwater fish native to eastern Australia, distinguished by its broad head and compact size. Typically inhabits weedy or still waters and preys on tiny aquatic invertebrates."
+  },
+  {
+    "species": "Craterocephalus stercusmuscarum fulvus",
+    "common_name": "Fly-specked Hardyhead",
+    "description": "A small, schooling fish found in northern and eastern Australia, known for its adaptability to a wide range of salinities and its role in the aquatic food web as prey for larger species."
+  },
+  {
+    "species": "Gadopsis marmoratus",
+    "common_name": "River Blackfish",
+    "description": "A solitary, nocturnal freshwater fish native to southeastern Australia, known for its mottled coloration and preference for cool, clear, fast-flowing streams with ample cover."
+  },
+  {
+    "species": "Galaxias oliros",
+    "common_name": "Obscure Galaxias",
+    "description": "A small, slender-bodied freshwater fish native to southeastern Australia, typically found in slow-flowing streams, wetlands, and floodplains with dense vegetation."
+  },
+  {
+    "species": "Melanotaenia spp.",
+    "common_name": "Rainbowfish (various)",
+    "description": "A genus of brightly colored freshwater fish commonly found across northern and eastern Australia. Known for their shimmering scales and peaceful schooling behavior in rivers, creeks, and billabongs."
   }
 ]

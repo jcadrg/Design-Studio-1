@@ -90,6 +90,13 @@ h1, h2, p {
   padding: 1rem 1.5rem;
 }
 
+.specs > p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
 .specs h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
@@ -103,23 +110,37 @@ h1, h2, p {
 
 .spec-card {
   background-color: #1f1f1f;
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.spec-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .spec-card {
+    padding: 1.5rem 1rem;
+  }
 }
 
 .label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: #999;
-  margin-bottom: 0.3rem;
+  color: #888;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
 }
 
 .value {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #fff;
+  margin-bottom: 0.25rem;
 }
 
 /* Animate page sections */
@@ -228,4 +249,30 @@ h1, h2, p {
   border-color: #00b3ff;
   box-shadow: 0 0 6px #00b3ff80;
   opacity: 1;
+}
+
+/* ===== Season Chart ===== */
+
+.season-chart {
+  margin: 3rem auto;
+  max-width: 600px;
+  background-color: #1c1c1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 179, 255, 0.15);
+  color: white;
+}
+
+.season-chart h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Note styling */
+
+.note {
+  font-size: 0.75rem;
+  color: #bbb;
+  margin-top: 0.4rem;
+  line-height: 1.4;
 }

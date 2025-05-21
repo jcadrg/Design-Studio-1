@@ -31,43 +31,70 @@
 
       <!-- Need to Know Section -->
       <section class="specs">
-        <h2>Need to Know</h2>
+        <h2>Most Frequent Observations</h2>
+        <p class="section-helper">
+          These values represent the environmental conditions under which this species has been most commonly recorded.
+        </p>
         <div class="spec-grid">
           <div class="spec-card">
-            <p class="label">Rainfall</p>
+            <p class="label">Typical Rainfall</p>
             <p class="value" id="rainfall"></p>
+            <p class="note">Avg. rainfall where samples were found</p>
           </div>
           <div class="spec-card">
             <p class="label">Temperature Range</p>
             <p class="value" id="tempRange"></p>
+            <p class="note">Min–Max recorded during sampling</p>
           </div>
           <div class="spec-card">
-            <p class="label">Seasonality</p>
+            <p class="label">Peak Seasonality</p>
             <p class="value" id="seasonality"></p>
+            <p class="note">Season with highest number of samples</p>
           </div>
           <div class="spec-card">
-            <p class="label">Sample Count</p>
+            <p class="label">Total Samples</p>
             <p class="value" id="sampleCount"></p>
+            <p class="note">All collected records for this species</p>
           </div>
           <div class="spec-card">
-            <p class="label">Observed From</p>
+            <p class="label">First Recorded</p>
             <p class="value" id="observedFrom"></p>
+            <p class="note">Earliest sampling date in the dataset</p>
           </div>
           <div class="spec-card">
-            <p class="label">Last sample date</p>
+            <p class="label">Most Recent</p>
             <p class="value" id="lastSeen"></p>
+            <p class="note">Latest available sample date</p>
           </div>
         </div>
       </section>
 
-      <!-- Similar Species Section -->
-      <section class="similar">
-        <h2>Similar Species</h2>
-        <div class="similar-row" id="similarSpecies">
-          <!-- Cards inserted dynamically -->
-        </div>
+      <!-- Seasonal Distribution Chart -->
+      <section class="season-chart">
+        <h2>Seasonal Distribution</h2>
+        <canvas id="seasonChart" width="400" height="250"></canvas>
+      </section>
+
+      <!-- Temperature bracket Distribution Chart -->
+      <section class="season-chart">
+        <h2>Temperature Range Distribution</h2>
+        <canvas id="temperatureChart" width="400" height="250"></canvas>
+      </section>
+
+      <!-- Temperature bracket Distribution Chart -->
+      <section class="season-chart">
+        <h2>Rainfall Distribution</h2>
+        <canvas id="rainfallChart" width="400" height="250"></canvas>
+      </section>
+
+      <!-- Frequency (timeframe in which sampling happened) Distribution Chart -->
+      <section class="season-chart">
+        <h2>Sampling Frequency Over Time</h2>
+        <canvas id="frequencyChart" width="400" height="250"></canvas>
       </section>
     </div>
-    <script src="details.js"></script>
+    <script type="module" src="details.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./js/chart.js"></script>
   </body>
 </html>
