@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Murray-Darling Fish Explorer</title>
+    <link rel="stylesheet" href="landing.css" />
+  </head>
+  <body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Murray-Darling Fish Explorer</h1>
+        <p class="hero-subtitle">
+          See the science behind every splash in the Murray-Darling Basin.
+        </p>
+        <a href="index.html" class="cta-btn">Start Exploring</a>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+
+    <section class="feature feature-1">
+      <div class="feature-inner">
+        <div class="feature-text fade-in-left">
+          <h2>Dynamic Filtering</h2>
+          <p>
+            Explore species based on rainfall, temperature, and seasonal
+            conditions.
+          </p>
+        </div>
+        <div class="feature-bg"></div>
+      </div>
+    </section>
+
+    <section class="feature feature-2">
+      <div class="feature-inner reverse">
+        <div class="feature-text fade-in-right">
+          <h2>Interactive Mapping</h2>
+          <p>
+            Navigate the Murray-Darling Basin and discover where each fish
+            species has been spotted.
+          </p>
+        </div>
+        <div class="feature-bg"></div>
+      </div>
+    </section>
+
+    <section class="feature feature-3">
+      <div class="feature-inner">
+        <div class="feature-text fade-in-left">
+          <h2>Detailed Insights</h2>
+          <p>
+            Visual breakdowns of seasonal behavior, rainfall, temperature, and
+            sampling frequency.
+          </p>
+        </div>
+        <div class="feature-bg"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        Created as part of UQ - DESIGN COMPUTING STUDIO 1 project. Imagery and
+        data sourced from academic research and ecological databases.
+      </p>
+    </footer>
+    <script>
+      window.addEventListener("scroll", () => {
+        const hero = document.querySelector(".hero");
+        hero.style.backgroundSize = `${100 + window.scrollY / 20}%`;
+      });
+
+      const heroContent = document.querySelector(".hero-content");
+      window.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 10;
+        const y = (e.clientY / window.innerHeight - 0.5) * 10;
+        heroContent.style.transform = `translate(${x}px, ${y}px)`;
+      });
+
+      const featureSections = document.querySelectorAll(".feature-text");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      featureSections.forEach((sec) => observer.observe(sec));
+    </script>
+  </body>
+</html>

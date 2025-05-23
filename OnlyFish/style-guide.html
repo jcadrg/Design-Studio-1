@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Guide</title>
+    <link rel="stylesheet" href="style-guide.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Style Guide</h1>
+      <p class="description">
+        Reference guide for UI consistency, accessibility, and aesthetic decisions across the project.
+      </p>
+
+      <!-- COLOUR SCHEME -->
+      <section aria-labelledby="colors">
+        <h2 id="colors">Colour Scheme</h2>
+        <p class="section-description">
+          A dark-first palette with key UI highlights. Prioritizes contrast, readability, and visual calmness.
+        </p>
+        <div class="grid">
+          <div class="card bg-primary">
+            <h3>Primary</h3>
+            <p class="hex">#00B3FF</p>
+            <p>Used for buttons, highlights, and links.</p>
+          </div>
+          <div class="card bg-accent">
+            <h3>Accent</h3>
+            <p class="hex">#F18F01</p>
+            <p>Used for hover effects and subtle CTAs.</p>
+          </div>
+          <div class="card bg-surface">
+            <h3>Surface</h3>
+            <p class="hex">#1E1E1E</p>
+            <p>Main background surface. Low strain for dark UIs.</p>
+          </div>
+          <div class="card bg-text">
+            <h3>Text</h3>
+            <p class="hex">#F0F0F0</p>
+            <p>Used for all body and heading text. High contrast.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHY -->
+      <section aria-labelledby="typography">
+        <h2 id="typography">Typography</h2>
+        <p class="section-description">
+          Consistent type sizes with hierarchy. All text uses Nunito.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <p class="heading-xl">Heading XL</p>
+            <p class="font-meta">Font: Nunito, 48px, Extra Bold</p>
+            <p>Used for hero titles, banners, and CTAs.</p>
+          </div>
+          <div class="card">
+            <p class="heading-large">Heading Large</p>
+            <p class="font-meta">Font: Nunito, 36px, Bold</p>
+            <p>Used for section titles and key prompts.</p>
+          </div>
+          <div class="card">
+            <p class="heading-medium">Heading Medium</p>
+            <p class="font-meta">Font: Nunito, 28px, Semi-Bold</p>
+            <p>Used for sub-sections and component titles.</p>
+          </div>
+          <div class="card">
+            <p class="body-large">Body Large</p>
+            <p class="font-meta">Font: Nunito, 20px, Regular</p>
+            <p>Used for descriptions and intro text.</p>
+          </div>
+          <div class="card">
+            <p class="body-medium">Body Medium</p>
+            <p class="font-meta">Font: Nunito, 16px, Regular</p>
+            <p>Default paragraph style.</p>
+          </div>
+          <div class="card">
+            <p class="caption">Caption</p>
+            <p class="font-meta">Font: Nunito, 12px, Medium</p>
+            <p>For metadata and low-emphasis info.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <section aria-labelledby="buttons">
+        <h2 id="buttons">Buttons</h2>
+        <p class="section-description">Accessible, responsive CTA buttons.</p>
+        <div class="button-row">
+          <button class="btn primary">Primary</button>
+          <button class="btn secondary">Secondary</button>
+          <button class="btn disabled" disabled>Disabled</button>
+        </div>
+      </section>
+
+      <!-- LINKS -->
+      <section aria-labelledby="links">
+        <h2 id="links">Link Styles</h2>
+        <p class="section-description">
+          Meets WCAG 2.1. Accessible via keyboard navigation.
+        </p>
+        <p>
+          <a href="#">Default Link</a> |
+          <a href="#" class="hover-link">Hover Link</a> |
+          <a href="#" class="focus-link">Focus Link</a> |
+          <span class="disabled-link">Disabled Link</span>
+        </p>
+        <p class="note">
+          Each state (normal, hover, focus, disabled) supports accessibility expectations and usability.
+        </p>
+      </section>
+
+      <footer>
+        <p>Created for the Murray-Darling Fish Explorer Project – DECO7180</p>
+      </footer>
+    </main>
+  </body>
+</html>

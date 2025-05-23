@@ -1,0 +1,91 @@
+/* ===== Base Styles ===== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+
+:root {
+  --primary: #00b3ff;
+  --accent: #f18f01;
+  --surface: #1e1e1e;
+  --text: #f0f0f0;
+  --muted: #2e2e2e;
+  --disabled: #888;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--surface);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+/* ===== Section Styling ===== */
+.section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--muted);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 179, 255, 0.1);
+}
+
+.section code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+}
+
+ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  color: var(--text);
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+strong {
+  color: var(--accent);
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 768px) {
+  html, body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

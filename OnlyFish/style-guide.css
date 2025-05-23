@@ -1,0 +1,203 @@
+/* ==== Base Setup ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+main {
+  max-width: 1080px;
+  margin: auto;
+  padding-bottom: 4rem;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.description, .section-description {
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* ==== Cards + Grid Layout ==== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.hex {
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  color: #aaa;
+}
+
+/* ==== Colour Cards ==== */
+.bg-primary {
+  background-color: #00B3FF;
+  color: #ffffff;
+}
+
+.bg-accent {
+  background-color: #F18F01;
+  color: #ffffff;
+}
+
+.bg-surface {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+}
+
+.bg-text {
+  background-color: #f0f0f0;
+  color: #121212;
+}
+
+/* ==== Typography Examples ==== */
+.heading-xl {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #00B3FF;
+}
+
+.heading-large {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.heading-medium {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.body-large {
+  font-size: 1.25rem;
+}
+
+.body-medium {
+  font-size: 1rem;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #aaa;
+}
+
+.font-meta {
+  font-size: 0.9rem;
+  color: #77aaff;
+  margin-bottom: 0.5rem;
+}
+
+/* ==== Buttons ==== */
+.button-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  font-family: 'Nunito', sans-serif;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #00B3FF;
+  color: #fff;
+}
+
+.secondary {
+  background-color: transparent;
+  color: #00B3FF;
+  border: 2px solid #00B3FF;
+}
+
+.disabled {
+  background-color: #444;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* ==== Link Styles ==== */
+a {
+  color: #00B3FF;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+a.hover-link:hover {
+  color: #F18F01;
+  text-decoration: underline;
+}
+
+a.focus-link:focus {
+  outline: 3px solid #00B3FF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.disabled-link {
+  color: #888;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.note {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-left: 4px solid #00B3FF;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
